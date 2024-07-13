@@ -6,6 +6,8 @@
     "@chainlink/local": "github:smartcontractkit/chainlink-local",
     "@nomicfoundation/hardhat-foundry": "^1.1.2",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@hyperlane-xyz/sdk": "^1.2.2",
+    "fhevm": "^0.3.0",
     "hardhat": "^2.22.6"
   }
 }
