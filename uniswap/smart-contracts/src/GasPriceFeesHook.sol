@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.24;
 
 import {BaseHook} from "v4-periphery/BaseHook.sol";
 import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";

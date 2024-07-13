@@ -1,0 +1,11 @@
+{
+  "name": "ccip-starter-kit-foundry",
+  "devDependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@chainlink/contracts-ccip": "^1.4.0",
+    "@chainlink/local": "github:smartcontractkit/chainlink-local",
+    "@nomicfoundation/hardhat-foundry": "^1.1.2",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.6"
+  }
+}
