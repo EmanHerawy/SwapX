@@ -1,0 +1,316 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package contract.v1;
+message Events {
+    repeated Swapmgr_Approval swapmgr_approvals = 1;
+    repeated Swapmgr_Initialize swapmgr_initializes = 2;
+    repeated Swapmgr_ModifyLiquidity swapmgr_modify_liquidities = 3;
+    repeated Swapmgr_OperatorSet swapmgr_operator_sets = 4;
+    repeated Swapmgr_OwnershipTransferred swapmgr_ownership_transferreds = 5;
+    repeated Swapmgr_ProtocolFeeControllerUpdated swapmgr_protocol_fee_controller_updateds = 6;
+    repeated Swapmgr_ProtocolFeeUpdated swapmgr_protocol_fee_updateds = 7;
+    repeated Swapmgr_Swap swapmgr_swaps = 8;
+    repeated Swapmgr_Transfer swapmgr_transfers = 9;
+}
+message Calls {
+    repeated Swapmgr_ApproveCall swapmgr_call_approves = 1;
+    repeated Swapmgr_BurnCall swapmgr_call_burns = 2;
+    repeated Swapmgr_CollectProtocolFeesCall swapmgr_call_collect_protocol_fees = 3;
+    repeated Swapmgr_DonateCall swapmgr_call_donates = 4;
+    repeated Swapmgr_InitializeCall swapmgr_call_initializes = 5;
+    repeated Swapmgr_MintCall swapmgr_call_mints = 6;
+    repeated Swapmgr_ModifyLiquidityCall swapmgr_call_modify_liquidities = 7;
+    repeated Swapmgr_SetOperatorCall swapmgr_call_set_operators = 8;
+    repeated Swapmgr_SetProtocolFeeCall swapmgr_call_set_protocol_fees = 9;
+    repeated Swapmgr_SetProtocolFeeControllerCall swapmgr_call_set_protocol_fee_controllers = 10;
+    repeated Swapmgr_SettleCall swapmgr_call_settles = 11;
+    repeated Swapmgr_SwapCall swapmgr_call_swaps = 12;
+    repeated Swapmgr_SyncCall swapmgr_call_syncs = 13;
+    repeated Swapmgr_TakeCall swapmgr_call_takes = 14;
+    repeated Swapmgr_TransferCall swapmgr_call_transfers = 15;
+    repeated Swapmgr_TransferFromCall swapmgr_call_transfer_froms = 16;
+    repeated Swapmgr_TransferOwnershipCall swapmgr_call_transfer_ownerships = 17;
+    repeated Swapmgr_UnlockCall swapmgr_call_unlocks = 18;
+    repeated Swapmgr_UpdateDynamicLpFeeCall swapmgr_call_update_dynamic_lp_fees = 19;
+}
+message EventsCalls {
+    Events events = 1;
+    Calls calls = 2;
+}
+message Swapmgr_Approval {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes owner = 5;
+    bytes spender = 6;
+    string id = 7;
+    string amount = 8;
+}
+message Swapmgr_Initialize {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes id = 5;
+    bytes currency0 = 6;
+    bytes currency1 = 7;
+    uint64 fee = 8;
+    int64 tick_spacing = 9;
+    bytes hooks = 10;
+}
+message Swapmgr_ModifyLiquidity {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes id = 5;
+    bytes sender = 6;
+    int64 tick_lower = 7;
+    int64 tick_upper = 8;
+    string liquidity_delta = 9;
+}
+message Swapmgr_OperatorSet {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes owner = 5;
+    bytes operator = 6;
+    bool approved = 7;
+}
+message Swapmgr_OwnershipTransferred {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes user = 5;
+    bytes new_owner = 6;
+}
+message Swapmgr_ProtocolFeeControllerUpdated {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes protocol_fee_controller = 5;
+}
+message Swapmgr_ProtocolFeeUpdated {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes id = 5;
+    uint64 protocol_fee = 6;
+}
+message Swapmgr_Swap {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes id = 5;
+    bytes sender = 6;
+    string amount0 = 7;
+    string amount1 = 8;
+    string sqrt_price_x96 = 9;
+    string liquidity = 10;
+    int64 tick = 11;
+    uint64 fee = 12;
+}
+message Swapmgr_Transfer {
+    string evt_tx_hash = 1;
+    uint32 evt_index = 2;
+    google.protobuf.Timestamp evt_block_time = 3;
+    uint64 evt_block_number = 4;
+    bytes caller = 5;
+    bytes from = 6;
+    bytes to = 7;
+    string id = 8;
+    string amount = 9;
+}
+  
+message Swapmgr_ApproveCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes spender = 6;
+    string id = 7;
+    string amount = 8;
+    bool output_param0 = 9;
+}
+message Swapmgr_BurnCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes from = 6;
+    string id = 7;
+    string amount = 8;
+}
+message Swapmgr_CollectProtocolFeesCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes recipient = 6;
+    bytes currency = 7;
+    string amount = 8;
+    string output_amount_collected = 9;
+}
+message Swapmgr_DonateCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    string amount0 = 6;
+    string amount1 = 7;
+    bytes hook_data = 8;
+    string output_delta = 9;
+}
+message Swapmgr_InitializeCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    string sqrt_price_x96 = 6;
+    bytes hook_data = 7;
+    int64 output_tick = 8;
+}
+message Swapmgr_MintCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes to = 6;
+    string id = 7;
+    string amount = 8;
+}
+message Swapmgr_ModifyLiquidityCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes hook_data = 6;
+    string output_caller_delta = 7;
+    string output_fees_accrued = 8;
+}
+message Swapmgr_SetOperatorCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes operator = 6;
+    bool approved = 7;
+    bool output_param0 = 8;
+}
+message Swapmgr_SetProtocolFeeCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    uint64 new_protocol_fee = 6;
+}
+message Swapmgr_SetProtocolFeeControllerCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes controller = 6;
+}
+message Swapmgr_SettleCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes currency = 6;
+    string output_paid = 7;
+}
+message Swapmgr_SwapCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes hook_data = 6;
+    string output_swap_delta = 7;
+}
+message Swapmgr_SyncCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes currency = 6;
+    string output_balance = 7;
+}
+message Swapmgr_TakeCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes currency = 6;
+    bytes to = 7;
+    string amount = 8;
+}
+message Swapmgr_TransferCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes receiver = 6;
+    string id = 7;
+    string amount = 8;
+    bool output_param0 = 9;
+}
+message Swapmgr_TransferFromCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes sender = 6;
+    bytes receiver = 7;
+    string id = 8;
+    string amount = 9;
+    bool output_param0 = 10;
+}
+message Swapmgr_TransferOwnershipCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes new_owner = 6;
+}
+message Swapmgr_UnlockCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    bytes data = 6;
+    bytes output_result = 7;
+}
+message Swapmgr_UpdateDynamicLpFeeCall {
+    string call_tx_hash = 1;
+    google.protobuf.Timestamp call_block_time = 2;
+    uint64 call_block_number = 3;
+    uint64 call_ordinal = 4;
+    bool call_success = 5;
+    uint64 new_dynamic_lp_fee = 6;
+}
