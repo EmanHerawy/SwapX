@@ -12,11 +12,9 @@ import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/src/types/BeforeS
 
 contract Counter is BaseHook {
     using PoolIdLibrary for PoolKey;
+    bool private applyDiscount;
 
-    // NOTE: ---------------------------------------------------------
-    // state variables should typically be unique to a pool
-    // a single hook contract should be able to service multiple pools
-    // ---------------------------------------------------------------
+    event FeesChanged(uint256 fees); 
 
     mapping(PoolId => uint256 count) public beforeSwapCount;
     mapping(PoolId => uint256 count) public afterSwapCount;
@@ -54,7 +52,11 @@ contract Counter is BaseHook {
         override
         returns (bytes4, BeforeSwapDelta, uint24)
     {
-        beforeSwapCount[key.toId()]++;
+        beforeSwapCount[key.toId()]++; //Add custom logic here for swap data
+        if (applyDiscount) {
+            //applyDiscountedFees()
+            emit FeesChanged(0);
+        }
         return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
     }
 
@@ -63,7 +65,12 @@ contract Counter is BaseHook {
         override
         returns (bytes4, int128)
     {
-        afterSwapCount[key.toId()]++;
+        afterSwapCount[key.toId()]++; //Add custom logic here for swap data
+        
+        if (applyDiscount == true) {
+            applyDiscount = false;
+        }
+
         return (BaseHook.afterSwap.selector, 0);
     }
 
