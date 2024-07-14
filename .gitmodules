@@ -1,3 +1,6 @@
 [submodule "uniswap/smart-contracts/lib/axiom-std"]
 	path = uniswap/smart-contracts/lib/axiom-std
 	url = https://github.com/axiom-crypto/axiom-std
+[submodule "uniswap/smart-contracts/lib/v4-core"]
+	path = uniswap/smart-contracts/lib/v4-core
+	url = https://github.com/uniswap/v4-core
