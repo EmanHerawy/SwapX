@@ -35,3 +35,7 @@ v4-periphery/=lib/v4-periphery/contracts/
 @eth-optimism/=node_modules/@eth-optimism/
 @offchainlabs/=node_modules/@offchainlabs/
 @scroll-tech/=node_modules/@scroll-tech/
+fhevm/=node_modules/fhevm/
+@hyperlane-xyz/=node_modules/@hyperlane-xyz/
+@axiom-crypto/axiom-std/=lib/axiom-std/src/
+

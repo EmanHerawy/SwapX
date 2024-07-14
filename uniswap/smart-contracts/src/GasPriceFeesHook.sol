@@ -8,8 +8,9 @@ import {PoolKey} from "v4-core/types/PoolKey.sol";
 import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {LPFeeLibrary} from "v4-core/libraries/LPFeeLibrary.sol";
 import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/types/BeforeSwapDelta.sol";
+import {AxiomV2Client} from "@axiom-crypto/v2-periphery/client/AxiomV2Client.sol";
 
-contract GasPriceFeesHook is BaseHook {
+contract GasPriceFeesHook is BaseHook, AxiomV2Client {
     using LPFeeLibrary for uint24;
 
     // Keeping track of the moving average gas price
@@ -23,12 +24,71 @@ contract GasPriceFeesHook is BaseHook {
 
     error MustUseDynamicFee();
 
+    bytes32 immutable QUERY_SCHEMA;
+
+    /// @dev The chain ID of the chain whose data the callback is expected to be called from.
+    uint64 immutable SOURCE_CHAIN_ID;
+
+    /// @dev provenAverageBalances[blockNumber][address] = Average account balance (in wei)
+    mapping(uint256 => mapping(address => uint256)) public provenAverageBalances;
+    address public topTrader;
+
+    event FeesChanged(uint256 fees);
+
+    /// @notice Emitted when Axiom fulfills a query with query schema `QUERY_SCHEMA` and hits a callback to this contract.
+    /// @param blockNumber The block number the account's average balance was calculated at.
+    /// @param addr The address of the account whose average balance was calculated.
+    /// @param averageBalance The average account balance at the queried block number. Computing the average balance was done off-chain in a ZK proof, not in this contract.
+    event AverageBalanceStored(uint256 blockNumber, address addr, uint256 averageBalance);
+
     // Initialize BaseHook parent contract in the constructor
-    constructor(IPoolManager _poolManager) BaseHook(_poolManager) {
+    constructor(
+        address _axiomV2QueryAddress,
+        uint64 _callbackSourceChainId,
+        bytes32 _querySchema,
+        IPoolManager _poolManager
+    ) BaseHook(_poolManager) AxiomV2Client(_axiomV2QueryAddress) {
+        QUERY_SCHEMA = _querySchema;
+        SOURCE_CHAIN_ID = _callbackSourceChainId;
         updateMovingAverage();
     }
 
+    /// @inheritdoc AxiomV2Client
+    function _validateAxiomV2Call(
+        AxiomCallbackType, // callbackType,
+        uint64 sourceChainId,
+        address, // caller,
+        bytes32 querySchema,
+        uint256, // queryId,
+        bytes calldata // extraData
+    ) internal view override {
+        // Add your validation logic here for checking the callback responses
+        require(sourceChainId == SOURCE_CHAIN_ID, "Source chain ID does not match");
+        require(querySchema == QUERY_SCHEMA, "Invalid query schema");
+    }
+
+    /// @inheritdoc AxiomV2Client
+    function _axiomV2Callback(
+        uint64, // sourceChainId,
+        address, // caller,
+        bytes32, // querySchema,
+        uint256, // queryId,
+        bytes32[] calldata axiomResults,
+        bytes calldata // extraData
+    ) internal override {
+        // The callback from the Axiom ZK circuit proof comes out here and we can handle the results from the
+        // `axiomResults` array. Values should be converted into their original types to be used properly.
+        uint256 blockNumber = uint256(axiomResults[0]);
+        topTrader = address(uint160(uint256(axiomResults[1])));
+
+        // You can do whatever you'd like with the results here. In this example, we just store it the value
+        // // directly in the contract.
+        // provenAverageBalances[blockNumber][addr] = averageBalance;
+
+        // emit AverageBalanceStored(blockNumber, addr, averageBalance);
+    }
     // Required override function for BaseHook to let the PoolManager know which hooks are implemented
+
     function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
         return Hooks.Permissions({
             beforeInitialize: true,
@@ -69,9 +129,12 @@ contract GasPriceFeesHook is BaseHook {
     {
         // obtain the LP fee based on moving average gas price
         uint24 fee = getFee();
-
+        if (msg.sender == topTrader) {
+            // emit FeesChanged(fee);
+            return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, fee | LPFeeLibrary.OVERRIDE_FEE_FLAG);
+        }
+        return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, fee);
         // to override the LP fee, the 2nd bit (of the 24 bits) must be set
-        return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, fee | LPFeeLibrary.OVERRIDE_FEE_FLAG);
     }
 
     function afterSwap(address, PoolKey calldata, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)

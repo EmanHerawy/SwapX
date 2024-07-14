@@ -1,0 +1,46 @@
+[package]
+name = "risc0-steel"
+description = "Query Ethereum state, or any other EVM-based blockchain state within the RISC Zero zkVM."
+version = "0.11.0"
+edition = { workspace = true }
+license = { workspace = true }
+homepage = { workspace = true }
+repository = { workspace = true }
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[dependencies]
+alloy-primitives = { workspace = true }
+alloy-rlp = { workspace = true }
+alloy-rlp-derive = { workspace = true }
+alloy-sol-types = { workspace = true }
+anyhow = { workspace = true }
+ethers-core = { workspace = true, optional = true }
+ethers-providers = { workspace = true, optional = true }
+log = { workspace = true, optional = true }
+nybbles = { workspace = true }
+once_cell = { workspace = true }
+revm = { workspace = true, features = ["serde"] }
+rlp = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true, optional = true }
+thiserror = { workspace = true }
+tokio = { workspace = true, optional = true }
+
+[dev-dependencies]
+alloy-trie = { workspace = true }
+risc0-steel = { path = ".", features = ["host"] }
+test-log = { workspace = true }
+
+[features]
+default = []
+host = [
+    "dep:ethers-core",
+    "dep:ethers-providers",
+    "dep:log",
+    "dep:serde_json",
+    "dep:tokio",
+    "revm/ethersdb",
+]

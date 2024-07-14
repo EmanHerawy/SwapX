@@ -10,31 +10,25 @@ import {LPFeeLibrary} from "v4-core/libraries/LPFeeLibrary.sol";
 import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "v4-core/types/BeforeSwapDelta.sol";
 import {CCIPReceiver} from "@chainlink/contracts-ccip/src/v0.8/ccip/applications/CCIPReceiver.sol";
 import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
-contract UniCCCIP is BaseHook ,CCIPReceiver{
+
+contract UniCCCIP is BaseHook, CCIPReceiver {
     using LPFeeLibrary for uint24;
 
-  bytes32 latestMessageId;
+    bytes32 latestMessageId;
     uint64 latestSourceChainSelector;
     address latestSender;
     string latestMessage;
 
     event MessageReceived(
-        bytes32 latestMessageId,
-        uint64 latestSourceChainSelector,
-        address latestSender,
-        string latestMessage
+        bytes32 latestMessageId, uint64 latestSourceChainSelector, address latestSender, string latestMessage
     );
 
     // Initialize BaseHook parent contract in the constructor
-    constructor(IPoolManager _poolManager,address router)  BaseHook(_poolManager) CCIPReceiver(router){
-       
-    }
+    constructor(IPoolManager _poolManager, address router) BaseHook(_poolManager) CCIPReceiver(router) {}
 
-
-    function _ccipReceive(
-        Client.Any2EVMMessage memory any2EvmMessage
-    ) internal override {
-        //TODO: we need to either to allow only swapping one of th etoken pair or call router and let user swap any tokens
+    //ccip only support one token currently, the only way to know hte token pair is by passing the out token in message
+    function _ccipReceive(Client.Any2EVMMessage memory any2EvmMessage) internal override {
+        // TODO: we need to either to allow only swapping one of th etoken pair or call router and let user swap any tokens
         // if (any2EvmMessage.destTokenAmounts[0].token != address(i_usdcToken))
         //     revert WrongReceivedToken(
         //         address(i_usdcToken),
@@ -76,23 +70,22 @@ contract UniCCCIP is BaseHook ,CCIPReceiver{
         });
     }
 
- 
     function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
         external
         override
         returns (bytes4, BeforeSwapDelta, uint24)
     {
         // beforeSwapCount[key.toId()]++;
-        return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA,  LPFeeLibrary.OVERRIDE_FEE_FLAG);
+        return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, LPFeeLibrary.OVERRIDE_FEE_FLAG);
     }
 
     function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
         external
         override
-      returns (bytes4, int128)
+        returns (bytes4, int128)
     {
         // afterSwapCount[key.toId()]++;
-          return (this.afterSwap.selector, 0);
+        return (this.afterSwap.selector, 0);
     }
 
     function beforeAddLiquidity(
@@ -104,6 +97,4 @@ contract UniCCCIP is BaseHook ,CCIPReceiver{
         // beforeAddLiquidityCount[key.toId()]++;
         return BaseHook.beforeAddLiquidity.selector;
     }
-
-  
 }

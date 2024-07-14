@@ -11,19 +11,11 @@ contract DeployBasicTokenSender is Script, Helper {
         uint256 senderPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(senderPrivateKey);
 
-        (address router, address linkToken, , ) = getConfigFromNetwork(source);
+        (address router, address linkToken,,) = getConfigFromNetwork(source);
 
-        BasicTokenSender basicTokenSender = new BasicTokenSender(
-            router,
-            linkToken
-        );
+        BasicTokenSender basicTokenSender = new BasicTokenSender(router, linkToken);
 
-        console.log(
-            "Basic Token Sender deployed on ",
-            networks[source],
-            "with address: ",
-            address(basicTokenSender)
-        );
+        console.log("Basic Token Sender deployed on ", networks[source], "with address: ", address(basicTokenSender));
 
         vm.stopBroadcast();
     }
@@ -40,14 +32,9 @@ contract SendBatch is Script, Helper {
         uint256 senderPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(senderPrivateKey);
 
-        (, , , uint64 destinationChainId) = getConfigFromNetwork(destination);
+        (,,, uint64 destinationChainId) = getConfigFromNetwork(destination);
 
-        BasicTokenSender(basicTokenSenderAddres).send(
-            destinationChainId,
-            receiver,
-            tokensToSendDetails,
-            payFeesIn
-        );
+        BasicTokenSender(basicTokenSenderAddres).send(destinationChainId, receiver, tokensToSendDetails, payFeesIn);
 
         vm.stopBroadcast();
     }
