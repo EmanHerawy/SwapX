@@ -58,6 +58,8 @@ Utilizing zero-knowledge proofs (ZKPs), SwapX ensures the integrity and security
 
 - Proof of Computation: Verify blockchain history and transaction computations efficiently and securely.
 
+We used TheGraph for faster data indexing for ultimate processing.  
+
 
 <!-- TechStack -->
 ### Tech Stack
