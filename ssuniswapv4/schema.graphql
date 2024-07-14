@@ -1,0 +1,306 @@
+type swapmgr_approval @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    amount: BigDecimal!
+    id: BigDecimal!
+    owner: String!
+    spender: String!
+}
+type swapmgr_initialize @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    currency0: String!
+    currency1: String!
+    fee: BigInt!
+    hooks: String!
+    id: String!
+    tick_spacing: BigInt!
+}
+type swapmgr_modify_liquidity @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    id: String!
+    liquidity_delta: BigDecimal!
+    sender: String!
+    tick_lower: BigInt!
+    tick_upper: BigInt!
+}
+type swapmgr_operator_set @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    approved: Boolean!
+    operator: String!
+    owner: String!
+}
+type swapmgr_ownership_transferred @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    new_owner: String!
+    user: String!
+}
+type swapmgr_protocol_fee_controller_updated @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    protocol_fee_controller: String!
+}
+type swapmgr_protocol_fee_updated @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    id: String!
+    protocol_fee: BigInt!
+}
+type swapmgr_swap @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    amount0: BigDecimal!
+    amount1: BigDecimal!
+    fee: BigInt!
+    id: String!
+    liquidity: BigDecimal!
+    sender: String!
+    sqrt_price_x96: BigDecimal!
+    tick: BigInt!
+}
+type swapmgr_transfer @entity {
+    id: ID!
+    evt_tx_hash: String!
+    evt_index: BigInt!
+    evt_block_time: String!
+    evt_block_number: BigInt!
+    amount: BigDecimal!
+    caller: String!
+    from: String!
+    id: BigDecimal!
+    to: String!
+}
+
+type swapmgr_call_approve @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    id: BigDecimal!
+    output_param0: Boolean!
+    spender: String!
+}
+type swapmgr_call_burn @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    from: String!
+    id: BigDecimal!
+}
+type swapmgr_call_collect_protocol_fees @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    currency: String!
+    output_amount_collected: BigDecimal!
+    recipient: String!
+}
+type swapmgr_call_donate @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount0: BigDecimal!
+    amount1: BigDecimal!
+    hook_data: String!
+    output_delta: BigDecimal!
+}
+type swapmgr_call_initialize @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    hook_data: String!
+    output_tick: BigInt!
+    sqrt_price_x96: BigDecimal!
+}
+type swapmgr_call_mint @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    id: BigDecimal!
+    to: String!
+}
+type swapmgr_call_modify_liquidity @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    hook_data: String!
+    output_caller_delta: BigDecimal!
+    output_fees_accrued: BigDecimal!
+}
+type swapmgr_call_set_operator @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    approved: Boolean!
+    operator: String!
+    output_param0: Boolean!
+}
+type swapmgr_call_set_protocol_fee @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    new_protocol_fee: BigInt!
+}
+type swapmgr_call_set_protocol_fee_controller @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    controller: String!
+}
+type swapmgr_call_settle @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    currency: String!
+    output_paid: BigDecimal!
+}
+type swapmgr_call_swap @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    hook_data: String!
+    output_swap_delta: BigDecimal!
+}
+type swapmgr_call_sync @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    currency: String!
+    output_balance: BigDecimal!
+}
+type swapmgr_call_take @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    currency: String!
+    to: String!
+}
+type swapmgr_call_transfer @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    id: BigDecimal!
+    output_param0: Boolean!
+    receiver: String!
+}
+type swapmgr_call_transfer_from @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    amount: BigDecimal!
+    id: BigDecimal!
+    output_param0: Boolean!
+    receiver: String!
+    sender: String!
+}
+type swapmgr_call_transfer_ownership @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    new_owner: String!
+}
+type swapmgr_call_unlock @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    data: String!
+    output_result: String!
+}
+type swapmgr_call_update_dynamic_lp_fee @entity {
+    id: ID!
+    call_tx_hash: String!
+    call_block_time: String!
+    call_block_number: BigInt!
+    call_ordinal: BigInt!
+    call_success: Boolean!
+    new_dynamic_lp_fee: BigInt!
+}
+
+
+

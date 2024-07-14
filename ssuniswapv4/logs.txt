@@ -1,0 +1,534 @@
+
+substreams protogen ./substreams.yaml --exclude-paths="sf/substreams,google"
+
+
+
+Running: buf generate /tmp/ssuniswapv4.tmp.spkg#format=bin --exclude-path sf/substreams,google
+
+
+cargo build --target wasm32-unknown-unknown --release
+
+
+
+
+
+
+
+    Updating crates.io index
+
+
+ Downloading crates ...
+  Downloaded byte-slice-cast v1.2.2
+  Downloaded thiserror-impl v1.0.62
+  Downloaded tiny-keccak v2.0.2
+  Downloaded block-buffer v0.10.4
+  Downloaded uint v0.9.5
+  Downloaded toml_datetime v0.6.6
+  Downloaded substreams-ethereum-derive v0.9.11
+  Downloaded unicode-ident v1.0.12
+  Downloaded thiserror v1.0.62
+  Downloaded wyz v0.5.1
+  Downloaded winnow v0.5.40
+  Downloaded tempfile v3.10.1
+  Downloaded unicode-width v0.1.13
+  Downloaded syn v2.0.71
+  Downloaded petgraph v0.6.5
+  Downloaded sha3 v0.10.8
+  Downloaded libc v0.2.155
+
+  Downloaded regex-syntax v0.8.4
+  Downloaded regex-automata v0.4.7
+  Downloaded syn v1.0.109
+  Downloaded linux-raw-sys v0.4.14
+  Downloaded substreams-macro v0.5.21
+  Downloaded substreams-ethereum-core v0.9.12
+  Downloaded substreams-entity-change v1.3.2
+  Downloaded serde_derive v1.0.204
+  Downloaded rustix v0.38.34
+  Downloaded rustc-hex v2.1.0
+  Downloaded regex v1.10.5
+  Downloaded pest v2.7.11
+  Downloaded version_check v0.9.4
+  Downloaded serde_json v1.0.120
+  Downloaded ryu v1.0.18
+  Downloaded radium v0.7.0
+  Downloaded prost-types v0.11.9
+  Downloaded prost-build v0.11.9
+  Downloaded proc-macro-crate v3.1.0
+  Downloaded prettyplease v0.1.25
+  Downloaded pest_generator v2.7.11
+  Downloaded pest_derive v2.7.11
+  Downloaded parity-scale-codec v3.6.12
+  Downloaded once_cell v1.19.0
+  Downloaded num-integer v0.1.46
+  Downloaded multimap v0.8.3
+  Downloaded log v0.4.22
+  Downloaded lazy_static v1.5.0
+  Downloaded itoa v1.0.11
+  Downloaded itertools v0.10.5
+  Downloaded indexmap v2.2.6
+  Downloaded impl-serde v0.3.2
+  Downloaded impl-codec v0.6.0
+  Downloaded hex-literal v0.3.4
+  Downloaded hashbrown v0.14.5
+  Downloaded getrandom v0.2.15
+  Downloaded generic-array v0.14.7
+  Downloaded funty v2.0.0
+  Downloaded fixedbitset v0.4.2
+  Downloaded fastrand v2.1.0
+  Downloaded errno v0.3.9
+  Downloaded either v1.13.0
+  Downloaded crypto-common v0.1.6
+  Downloaded cpufeatures v0.2.12
+  Downloaded bytes v1.6.1
+  Downloaded bitvec v1.0.1
+  Downloaded aho-corasick v1.1.3
+  Downloaded which v4.4.2
+  Downloaded ucd-trie v0.1.6
+  Downloaded typenum v1.17.0
+  Downloaded toml_edit v0.21.1
+  Downloaded substreams-ethereum v0.9.11
+  Downloaded substreams v0.5.21
+  Downloaded static_assertions v1.1.0
+  Downloaded sha2 v0.10.8
+  Downloaded serde v1.0.204
+  Downloaded rand_chacha v0.3.1
+  Downloaded rand v0.8.5
+  Downloaded quote v1.0.36
+  Downloaded prost-derive v0.11.9
+  Downloaded prost v0.11.9
+  Downloaded proc-macro2 v1.0.86
+  Downloaded pest_meta v2.7.11
+  Downloaded num-traits v0.2.19
+  Downloaded num-bigint v0.4.6
+  Downloaded memchr v2.7.4
+  Downloaded keccak v0.1.5
+  Downloaded impl-trait-for-tuples v0.2.2
+  Downloaded hex v0.4.3
+  Downloaded heck v0.4.1
+  Downloaded ethbloom v0.12.1
+  Downloaded ethabi v17.2.0
+  Downloaded digest v0.10.7
+  Downloaded cfg-if v1.0.0
+  Downloaded base64 v0.13.1
+  Downloaded tap v1.0.1
+  Downloaded substreams-ethereum-abigen v0.9.11
+  Downloaded substreams-database-change v1.3.1
+  Downloaded rlp v0.5.2
+  Downloaded rand_core v0.6.4
+  Downloaded ppv-lite86 v0.2.17
+  Downloaded parity-scale-codec-derive v3.6.12
+  Downloaded pad v0.1.6
+  Downloaded home v0.5.9
+  Downloaded fixed-hash v0.7.0
+  Downloaded ethereum-types v0.13.1
+  Downloaded byteorder v1.5.0
+  Downloaded bitflags v2.6.0
+  Downloaded arrayvec v0.7.4
+  Downloaded anyhow v1.0.86
+  Downloaded primitive-types v0.11.1
+  Downloaded impl-rlp v0.3.0
+  Downloaded equivalent v1.0.1
+  Downloaded crunchy v0.2.2
+  Downloaded bigdecimal v0.3.1
+  Downloaded autocfg v1.3.0
+   Compiling proc-macro2 v1.0.86
+   Compiling unicode-ident v1.0.12
+   Compiling syn v1.0.109
+   Compiling serde v1.0.204
+   Compiling thiserror v1.0.62
+   Compiling crunchy v0.2.2
+   Compiling typenum v1.17.0
+   Compiling version_check v0.9.4
+
+
+   Compiling autocfg v1.3.0
+   Compiling anyhow v1.0.86
+   Compiling memchr v2.7.4
+   Compiling either v1.13.0
+
+
+
+
+
+
+
+
+
+   Compiling tiny-keccak v2.0.2
+   Compiling generic-array v0.14.7
+   Compiling libc v0.2.155
+   Compiling num-traits v0.2.19
+   Compiling once_cell v1.19.0
+   Compiling ucd-trie v0.1.6
+   Compiling itertools v0.10.5
+   Compiling bytes v1.6.1
+
+   Compiling cfg-if v1.0.0
+   Compiling serde_json v1.0.120
+   Compiling quote v1.0.36
+   Compiling ppv-lite86 v0.2.17
+   Compiling rustc-hex v2.1.0
+
+   Compiling syn v2.0.71
+   Compiling static_assertions v1.1.0
+   Compiling getrandom v0.2.15
+   Compiling byteorder v1.5.0
+   Compiling hex-literal v0.3.4
+   Compiling rlp v0.5.2
+
+   Compiling rand_core v0.6.4
+   Compiling serde_derive v1.0.204
+   Compiling thiserror-impl v1.0.62
+   Compiling rand_chacha v0.3.1
+   Compiling impl-trait-for-tuples v0.2.2
+   Compiling prost-derive v0.11.9
+
+   Compiling byte-slice-cast v1.2.2
+   Compiling arrayvec v0.7.4
+   Compiling rand v0.8.5
+   Compiling hex v0.4.3
+
+   Compiling impl-rlp v0.3.0
+   Compiling fixed-hash v0.7.0
+   Compiling prettyplease v0.1.25
+
+   Compiling num-integer v0.1.46
+   Compiling crypto-common v0.1.6
+   Compiling block-buffer v0.10.4
+   Compiling uint v0.9.5
+   Compiling aho-corasick v1.1.3
+
+   Compiling pest v2.7.11
+   Compiling substreams-macro v0.5.21
+   Compiling regex-syntax v0.8.4
+
+   Compiling pest_meta v2.7.11
+   Compiling prost v0.11.9
+
+   Compiling pest_generator v2.7.11
+   Compiling regex-automata v0.4.7
+   Compiling digest v0.10.7
+   Compiling num-bigint v0.4.6
+
+   Compiling pest_derive v2.7.11
+   Compiling unicode-width v0.1.13
+   Compiling ryu v1.0.18
+   Compiling keccak v0.1.5
+   Compiling itoa v1.0.11
+
+   Compiling bigdecimal v0.3.1
+   Compiling pad v0.1.6
+   Compiling regex v1.10.5
+   Compiling sha3 v0.10.8
+
+   Compiling prost-types v0.11.9
+
+
+   Compiling impl-serde v0.3.2
+
+   Compiling parity-scale-codec v3.6.12
+   Compiling ethbloom v0.12.1
+   Compiling impl-codec v0.6.0
+
+   Compiling substreams v0.5.21
+
+   Compiling primitive-types v0.11.1
+   Compiling heck v0.4.1
+
+
+
+   Compiling base64 v0.13.1
+
+   Compiling ethereum-types v0.13.1
+
+
+   Compiling ethabi v17.2.0
+
+
+
+   Compiling substreams-ethereum-core v0.9.12
+   Compiling substreams-database-change v1.3.1
+   Compiling substreams-entity-change v1.3.2
+
+
+   Compiling substreams-ethereum-abigen v0.9.11
+
+
+
+   Compiling substreams-ethereum-derive v0.9.11
+
+
+   Compiling substreams-ethereum v0.9.11
+   Compiling ssuniswapv4 v0.0.1 (/tmp/remotebuild3063935556/substreams)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Finished `release` profile [optimized] target(s) in 1m 25s
+
+substreams protogen ./substreams.yaml --exclude-paths="sf/substreams,google"
+
+Running: buf generate /tmp/ssuniswapv4.tmp.spkg#format=bin --exclude-path sf/substreams,google
+
+cargo build --target wasm32-unknown-unknown --release
+
+    Updating crates.io index
+
+ Downloading crates ...
+  Downloaded byte-slice-cast v1.2.2
+  Downloaded thiserror-impl v1.0.62
+  Downloaded tiny-keccak v2.0.2
+  Downloaded block-buffer v0.10.4
+  Downloaded uint v0.9.5
+  Downloaded toml_datetime v0.6.6
+  Downloaded substreams-ethereum-derive v0.9.11
+  Downloaded unicode-ident v1.0.12
+  Downloaded thiserror v1.0.62
+  Downloaded wyz v0.5.1
+  Downloaded winnow v0.5.40
+  Downloaded tempfile v3.10.1
+  Downloaded unicode-width v0.1.13
+  Downloaded syn v2.0.71
+  Downloaded petgraph v0.6.5
+  Downloaded sha3 v0.10.8
+  Downloaded libc v0.2.155
+
+  Downloaded regex-syntax v0.8.4
+  Downloaded regex-automata v0.4.7
+  Downloaded syn v1.0.109
+  Downloaded linux-raw-sys v0.4.14
+  Downloaded substreams-macro v0.5.21
+  Downloaded substreams-ethereum-core v0.9.12
+  Downloaded substreams-entity-change v1.3.2
+  Downloaded serde_derive v1.0.204
+  Downloaded rustix v0.38.34
+  Downloaded rustc-hex v2.1.0
+  Downloaded regex v1.10.5
+  Downloaded pest v2.7.11
+  Downloaded version_check v0.9.4
+  Downloaded serde_json v1.0.120
+  Downloaded ryu v1.0.18
+  Downloaded radium v0.7.0
+  Downloaded prost-types v0.11.9
+  Downloaded prost-build v0.11.9
+  Downloaded proc-macro-crate v3.1.0
+  Downloaded prettyplease v0.1.25
+  Downloaded pest_generator v2.7.11
+  Downloaded pest_derive v2.7.11
+  Downloaded parity-scale-codec v3.6.12
+  Downloaded once_cell v1.19.0
+  Downloaded num-integer v0.1.46
+  Downloaded multimap v0.8.3
+  Downloaded log v0.4.22
+  Downloaded lazy_static v1.5.0
+  Downloaded itoa v1.0.11
+  Downloaded itertools v0.10.5
+  Downloaded indexmap v2.2.6
+  Downloaded impl-serde v0.3.2
+  Downloaded impl-codec v0.6.0
+  Downloaded hex-literal v0.3.4
+  Downloaded hashbrown v0.14.5
+  Downloaded getrandom v0.2.15
+  Downloaded generic-array v0.14.7
+  Downloaded funty v2.0.0
+  Downloaded fixedbitset v0.4.2
+  Downloaded fastrand v2.1.0
+  Downloaded errno v0.3.9
+  Downloaded either v1.13.0
+  Downloaded crypto-common v0.1.6
+  Downloaded cpufeatures v0.2.12
+  Downloaded bytes v1.6.1
+  Downloaded bitvec v1.0.1
+  Downloaded aho-corasick v1.1.3
+  Downloaded which v4.4.2
+  Downloaded ucd-trie v0.1.6
+  Downloaded typenum v1.17.0
+  Downloaded toml_edit v0.21.1
+  Downloaded substreams-ethereum v0.9.11
+  Downloaded substreams v0.5.21
+  Downloaded static_assertions v1.1.0
+  Downloaded sha2 v0.10.8
+  Downloaded serde v1.0.204
+  Downloaded rand_chacha v0.3.1
+  Downloaded rand v0.8.5
+  Downloaded quote v1.0.36
+  Downloaded prost-derive v0.11.9
+  Downloaded prost v0.11.9
+  Downloaded proc-macro2 v1.0.86
+  Downloaded pest_meta v2.7.11
+  Downloaded num-traits v0.2.19
+  Downloaded num-bigint v0.4.6
+  Downloaded memchr v2.7.4
+  Downloaded keccak v0.1.5
+  Downloaded impl-trait-for-tuples v0.2.2
+  Downloaded hex v0.4.3
+  Downloaded heck v0.4.1
+  Downloaded ethbloom v0.12.1
+  Downloaded ethabi v17.2.0
+  Downloaded digest v0.10.7
+  Downloaded cfg-if v1.0.0
+  Downloaded base64 v0.13.1
+  Downloaded tap v1.0.1
+  Downloaded substreams-ethereum-abigen v0.9.11
+  Downloaded substreams-database-change v1.3.1
+  Downloaded rlp v0.5.2
+  Downloaded rand_core v0.6.4
+  Downloaded ppv-lite86 v0.2.17
+  Downloaded parity-scale-codec-derive v3.6.12
+  Downloaded pad v0.1.6
+  Downloaded home v0.5.9
+  Downloaded fixed-hash v0.7.0
+  Downloaded ethereum-types v0.13.1
+  Downloaded byteorder v1.5.0
+  Downloaded bitflags v2.6.0
+  Downloaded arrayvec v0.7.4
+  Downloaded anyhow v1.0.86
+  Downloaded primitive-types v0.11.1
+  Downloaded impl-rlp v0.3.0
+  Downloaded equivalent v1.0.1
+  Downloaded crunchy v0.2.2
+  Downloaded bigdecimal v0.3.1
+  Downloaded autocfg v1.3.0
+   Compiling proc-macro2 v1.0.86
+   Compiling unicode-ident v1.0.12
+   Compiling syn v1.0.109
+   Compiling serde v1.0.204
+   Compiling thiserror v1.0.62
+   Compiling crunchy v0.2.2
+   Compiling typenum v1.17.0
+   Compiling version_check v0.9.4
+
+   Compiling autocfg v1.3.0
+   Compiling anyhow v1.0.86
+   Compiling memchr v2.7.4
+   Compiling either v1.13.0
+
+   Compiling tiny-keccak v2.0.2
+   Compiling generic-array v0.14.7
+   Compiling libc v0.2.155
+   Compiling num-traits v0.2.19
+   Compiling once_cell v1.19.0
+   Compiling ucd-trie v0.1.6
+   Compiling itertools v0.10.5
+   Compiling bytes v1.6.1
+
+   Compiling cfg-if v1.0.0
+   Compiling serde_json v1.0.120
+   Compiling quote v1.0.36
+   Compiling ppv-lite86 v0.2.17
+   Compiling rustc-hex v2.1.0
+
+   Compiling syn v2.0.71
+   Compiling static_assertions v1.1.0
+   Compiling getrandom v0.2.15
+   Compiling byteorder v1.5.0
+   Compiling hex-literal v0.3.4
+   Compiling rlp v0.5.2
+
+   Compiling rand_core v0.6.4
+   Compiling serde_derive v1.0.204
+   Compiling thiserror-impl v1.0.62
+   Compiling rand_chacha v0.3.1
+   Compiling impl-trait-for-tuples v0.2.2
+   Compiling prost-derive v0.11.9
+
+   Compiling byte-slice-cast v1.2.2
+   Compiling arrayvec v0.7.4
+   Compiling rand v0.8.5
+   Compiling hex v0.4.3
+
+   Compiling impl-rlp v0.3.0
+   Compiling fixed-hash v0.7.0
+   Compiling prettyplease v0.1.25
+
+   Compiling num-integer v0.1.46
+   Compiling crypto-common v0.1.6
+   Compiling block-buffer v0.10.4
+   Compiling uint v0.9.5
+   Compiling aho-corasick v1.1.3
+
+   Compiling pest v2.7.11
+   Compiling substreams-macro v0.5.21
+   Compiling regex-syntax v0.8.4
+
+   Compiling pest_meta v2.7.11
+   Compiling prost v0.11.9
+
+   Compiling pest_generator v2.7.11
+   Compiling regex-automata v0.4.7
+   Compiling digest v0.10.7
+   Compiling num-bigint v0.4.6
+
+   Compiling pest_derive v2.7.11
+   Compiling unicode-width v0.1.13
+   Compiling ryu v1.0.18
+   Compiling keccak v0.1.5
+   Compiling itoa v1.0.11
+
+   Compiling bigdecimal v0.3.1
+   Compiling pad v0.1.6
+   Compiling regex v1.10.5
+   Compiling sha3 v0.10.8
+
+   Compiling prost-types v0.11.9
+
+   Compiling impl-serde v0.3.2
+
+   Compiling parity-scale-codec v3.6.12
+   Compiling ethbloom v0.12.1
+   Compiling impl-codec v0.6.0
+
+   Compiling substreams v0.5.21
+
+   Compiling primitive-types v0.11.1
+   Compiling heck v0.4.1
+
+   Compiling base64 v0.13.1
+
+   Compiling ethereum-types v0.13.1
+
+   Compiling ethabi v17.2.0
+
+   Compiling substreams-ethereum-core v0.9.12
+   Compiling substreams-database-change v1.3.1
+   Compiling substreams-entity-change v1.3.2
+
+   Compiling substreams-ethereum-abigen v0.9.11
+
+   Compiling substreams-ethereum-derive v0.9.11
+
+   Compiling substreams-ethereum v0.9.11
+   Compiling ssuniswapv4 v0.0.1 (/tmp/remotebuild3063935556/substreams)
+
+    Finished `release` profile [optimized] target(s) in 1m 25s
+
+substreams pack substreams.yaml
+Successfully wrote "./ssuniswapv4-v0.1.0.spkg".
